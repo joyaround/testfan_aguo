@@ -23,6 +23,9 @@ class Baidu(unittest.TestCase):
         driver.find_element_by_id("kw").send_keys("selenium webdriver")
         driver.find_element_by_id("su").click()
         time.sleep(2)
+        res = driver.find_elements_by_tag_name("a")
+        for re in res:
+            print(re.text)
         driver.close()
 
     #百度设置用例
@@ -35,8 +38,9 @@ class Baidu(unittest.TestCase):
         m.find_element_by_xpath("//option[@value='50']").click()
         time.sleep(2)
         #保存设置的信息
-        driver.find_element_by_xpath("/html/body/form/div/input").click()
+        driver.find_element_by_xpath("//form/div/input").click()
         time.sleep(2)
+        # driver.
         driver.switch_to.alert.accept()
 
     def tearDown(self):
@@ -47,7 +51,7 @@ if __name__ == "__main__":
     testunit=unittest.TestSuite()
     testunit.addTest(Baidu("test_baidu_search"))
     testunit.addTest(Baidu("test_baidu_set"))
-    filename = 'C:\\workspace\\PySelenium\\BaiduResult1.html'
+    filename = 'BaiduResult1.html'
     fp = open(filename, 'wb')
     runner =HTMLTestRunner.HTMLTestRunner(
     stream=fp,
