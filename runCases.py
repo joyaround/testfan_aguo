@@ -21,7 +21,6 @@ fp = open(reportfilename, 'wb')
 runner =HTMLTestRunner.HTMLTestRunner(stream=fp,title='百度搜索测试报告',description='用例执行情况：')
 runner.run(mysuite)
 sleep(2)
-exit()
 
 # 设置smtplib所需的参数
 # 下面的发件人，收件人是用于邮件传输的。
@@ -47,7 +46,7 @@ text_plain = MIMEText(text, 'plain', 'utf-8')
 msg.attach(text_plain)
 
 # 构造附件
-sendfile = open(r'results2.html', 'rb').read()
+sendfile = open(reportfilename, 'rb').read()
 text_att = MIMEText(sendfile, 'base64', 'utf-8')
 text_att["Content-Type"] = 'application/octet-stream'
 # 附件可以重命名成aaa.txt，最好用原来文件名
