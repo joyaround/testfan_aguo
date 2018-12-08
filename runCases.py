@@ -13,7 +13,7 @@ from mytestcases import tryTestfan
 
 
 mysuite = unittest.TestSuite()
-# mysuite.addTest(unittest.makeSuite(trybaidu.Baidu))
+mysuite.addTest(unittest.makeSuite(trybaidu.Baidu))
 mysuite.addTest(unittest.makeSuite(tryTestfan.Testfan))
 
 reportfilename = 'result2.html'
@@ -22,8 +22,7 @@ runner =HTMLTestRunner.HTMLTestRunner(stream=fp,title='百度搜索测试报告'
 runner.run(mysuite)
 sleep(2)
 
-# 设置smtplib所需的参数
-# 下面的发件人，收件人是用于邮件传输的。
+
 smtpserver = 'smtp.163.com'
 username = 'testfan_aguo@163.com'
 password = 'testfan123'
@@ -39,25 +38,34 @@ msg['Subject'] = subject
 msg['From'] = 'Testfan_AGuo@163.com <testfan_aguo@163.com>'
 # 收件人为多个收件人,通过join将列表转换为以;为间隔的字符串
 msg['To'] = ";".join(receiver)
+# msg['Date']='2012-3-16'
 
 # 构造文字内容
 text = "Hi!\nHow are you?\nHere is the link you wanted:\nhttp://www.testfan.cn"
 text_plain = MIMEText(text, 'plain', 'utf-8')
 msg.attach(text_plain)
 
+# html = "test email"
+# text_html = MIMEText(html, 'html', 'utf-8')
+# text_html["Content-Disposition"] = 'attachment; filename="texthtml.html"'
+# msg.attach(text_html)
+
+attachfile = "result2.html"
 # 构造附件
-sendfile = open(reportfilename, 'rb').read()
+sendfile = open(attachfile, 'rb').read()
 text_att = MIMEText(sendfile, 'base64', 'utf-8')
 text_att["Content-Type"] = 'application/octet-stream'
 # 附件可以重命名成aaa.txt，最好用原来文件名
-# text_att["Content-Disposition"] = 'attachment; filename='+ reportfilename
+# text_att["Content-Disposition"] = 'attachment; filename="smail.py"'
 # 另一种实现方式
-text_att.add_header('Content-Disposition', 'attachment', filename=reportfilename)
+text_att.add_header('Content-Disposition', 'attachment', filename=attachfile)
 msg.attach(text_att)
 
 # 发送邮件
 smtp = smtplib.SMTP()
 smtp.connect('smtp.163.com')
+# 我们用set_debuglevel(1)就可以打印出和SMTP服务器交互的所有信息。
+# smtp.set_debuglevel(1)
 smtp.login(username, password)
 smtp.sendmail(sender, receiver, msg.as_string())
 smtp.quit()
