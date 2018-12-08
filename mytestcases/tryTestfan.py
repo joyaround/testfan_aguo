@@ -16,6 +16,7 @@ class Testfan(unittest.TestCase):
     def test_testfan_link(self):
         driver = self.driver
         driver.get(self.base_url + "/")
+        time.sleep(5)
         mymouse = driver.find_element_by_link_text("学习资料")
         ActionChains(driver).move_to_element(mymouse).perform()
         driver.find_element_by_link_text("精品文章").click()
