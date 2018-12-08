@@ -50,9 +50,9 @@ sendfile = open(reportfilename, 'rb').read()
 text_att = MIMEText(sendfile, 'base64', 'utf-8')
 text_att["Content-Type"] = 'application/octet-stream'
 # 附件可以重命名成aaa.txt，最好用原来文件名
-text_att["Content-Disposition"] = 'attachment; filename='+ reportfilename
+# text_att["Content-Disposition"] = 'attachment; filename='+ reportfilename
 # 另一种实现方式
-# text_att.add_header('Content-Disposition', 'attachment', filename=reportfilename)
+text_att.add_header('Content-Disposition', 'attachment', filename=reportfilename)
 msg.attach(text_att)
 
 # 发送邮件
