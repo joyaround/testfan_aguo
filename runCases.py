@@ -38,17 +38,13 @@ msg['Subject'] = subject
 msg['From'] = 'Testfan_AGuo@163.com <testfan_aguo@163.com>'
 # 收件人为多个收件人,通过join将列表转换为以;为间隔的字符串
 msg['To'] = ";".join(receiver)
-# msg['Date']='2012-3-16'
+
 
 # 构造文字内容
 text = "Hi!\nHow are you?\nHere is the link you wanted:\nhttp://www.testfan.cn"
 text_plain = MIMEText(text, 'plain', 'utf-8')
 msg.attach(text_plain)
 
-# html = "test email"
-# text_html = MIMEText(html, 'html', 'utf-8')
-# text_html["Content-Disposition"] = 'attachment; filename="texthtml.html"'
-# msg.attach(text_html)
 
 attachfile = "result2.html"
 # 构造附件
