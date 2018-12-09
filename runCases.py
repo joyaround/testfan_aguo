@@ -28,7 +28,7 @@ username = 'testfan_aguo@163.com'
 password = 'testfan123'
 sender = 'testfan_aguo@163.com'
 # 收件人为多个收件人
-receiver = ['joyaround@126.com', 'testfan_aguo@163.com']
+receiver = ['testfan_aguo@163.com']
 subject = 'Python email test'
 
 # 构造邮件对象MIMEMultipart对象
