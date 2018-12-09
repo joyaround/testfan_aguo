@@ -21,7 +21,7 @@ fp = open(reportfilename, 'wb')
 runner =HTMLTestRunner.HTMLTestRunner(stream=fp,title='百度搜索测试报告',description='用例执行情况：')
 runner.run(mysuite)
 sleep(2)
-exit()
+# exit()
 
 smtpserver = 'smtp.163.com'
 username = 'testfan_aguo@163.com'
